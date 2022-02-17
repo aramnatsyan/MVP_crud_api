@@ -30,6 +30,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        var_dump('tests'); die;
         $loginData = $request->validate([
             'email' => 'email|required',
             'password' => 'required'

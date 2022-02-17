@@ -23,3 +23,5 @@ Route::post('register', [\App\Http\Controllers\API\AuthController::class, 'regis
 Route::post('login', [\App\Http\Controllers\API\AuthController::class, 'login']);
 
 Route::apiResource('phone-items', \App\Http\Controllers\API\PhoneItemController::class);
+Route::apiResource('posts', \App\Http\Controllers\API\PostsController::class);
+Route::apiResource('comments', \App\Http\Controllers\API\PostCommentsController::class);
