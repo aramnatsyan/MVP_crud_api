@@ -5,6 +5,7 @@ This is Simple MVP GRUD application for posts, comments and vote posts.
 PostsController
 
     1. for getting posts use index endpoint ( http://postcrud.loc/api/posts __  request type is GET )
+        ![image](https://user-images.githubusercontent.com/65552097/154542013-4b4a1caf-708a-4cb6-bdbb-b4ef02a03d3e.png)
     
     2. for generating posts use store endpoint ( http://postcrud.loc/api/posts __ request type is POST)
     
