@@ -3,6 +3,7 @@
 This is Simple MVp GRUD application for posts, comments and vote posts.
 
 PostsController
+
     1. for getting posts use index action ( http://postcrud.loc/api/posts __  request type is GET )
     
     2. for generating posts use store action ( http://postcrud.loc/api/posts __ request type is POST)
