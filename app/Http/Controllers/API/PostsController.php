@@ -22,7 +22,7 @@ class PostsController extends Controller
         foreach ($phoneItems as $phoneItem) {
             $phoneItem->post_comments = $phoneItem->comments;
         }
-        return response(['phone_items' => $phoneItems, 'message' => 'Success'], 200);
+        return response(['posts' => $phoneItems, 'message' => 'Success'], 200);
     }
 
     /**
@@ -173,9 +173,38 @@ class PostsController extends Controller
      * @param Request $request
      * @param $id
      */
-    public function vote(Request $request, $id)
+    public function vote($id)
     {
-        var_dump($id);
-        die;
+        $res = [];
+        $status = 404;
+        $postIsVoted = false;
+        $post = Post::find($id);
+
+        if($post) {
+
+            $data['votes'] = $post->votes + 1;
+
+            $postIsVoted = $post->update($data);
+
+            if ($postIsVoted) {
+                $res = [
+                    'message' => 'Updated successfully'
+                ];
+                $status = 200;
+            } else {
+                $res = [
+                    'message' => 'failed'
+                ];
+                $status = 500;
+            }
+        }
+        else {
+            $res = [
+                'message' => 'Post not Found'
+            ];
+            $status = 404;
+        }
+
+        return response($res, $status);
     }
 }
