@@ -6,8 +6,8 @@ This is Simple MVP GRUD application for posts, comments and vote posts.
 Steps
 
 1. Create DB 
-    engine ->MariaDB, 
-    name -> crud_api, 
+    engine ->MariaDB , 
+    name -> crud_api , 
     encoding -> utf8_general_ci	
     
 2. run migrations
