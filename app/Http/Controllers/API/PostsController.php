@@ -22,7 +22,7 @@ class PostsController extends Controller
         foreach ($phoneItems as $phoneItem) {
             $phoneItem->post_comments = $phoneItem->comments;
         }
-        return response(['phone_items' => $phoneItems, 'message' => 'Retrieved successfully'], 200);
+        return response(['phone_items' => $phoneItems, 'message' => 'Success'], 200);
     }
 
     /**
