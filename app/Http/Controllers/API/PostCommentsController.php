@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PostCommentsController extends Controller
 {
@@ -14,7 +17,14 @@ class PostCommentsController extends Controller
      */
     public function index()
     {
-        //
+        $res = [];
+        $comments = Comment::all();
+
+        if ($comments) {
+            $res['comments'] = $comments;
+            $res['message'] = 'Success';
+        }
+        return response($res, 200);
     }
 
     /**
@@ -35,7 +45,32 @@ class PostCommentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'content' => 'required|max:255',
+            'author_name' => 'required',
+            'post_id' => 'required|int'
+        ]);
+
+        if ($validator->fails()) {
+            return response(['error' => $validator->errors(), 'Validation Error']);
+        }
+
+        $comment = Comment::create($data);
+        if ($comment) {
+            $res = [
+                'post' => new Comment($data),
+                'message' => 'Created successfully'
+            ];
+        } else {
+            $res = [
+                'error' => 'Something went wrong',
+                'message' => 'Failed'
+            ];
+        }
+
+        return response($res, 200);
     }
 
     /**
@@ -69,7 +104,35 @@ class PostCommentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $comment = Comment::find($id);
+
+        if ($comment) {
+            $data = $request->all();
+
+            $validator = Validator::make($data, [
+                'content' => 'required|max:255',
+                'author_name' => 'required',
+                'post_id' => 'required|int'
+            ]);
+
+            if ($validator->fails()) {
+                return response(['error' => $validator->errors(), 'Validation Error']);
+            }
+
+            $updated = $comment->update($data);
+
+            if ($updated) {
+                $res = [
+                    'message' => 'Updated successfully'
+                ];
+            } else {
+                $res = [
+                    'message' => 'failed'
+                ];
+            }
+
+            return response($res, 200);
+        }
     }
 
     /**
@@ -80,6 +143,23 @@ class PostCommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $commentIsDeleted = false;
+        $comment = Comment::find($id);
+
+        if (!empty($comment)) {
+            $commentIsDeleted = Comment::find($id)->delete();
+        }
+
+        if ($commentIsDeleted) {
+            $res = [
+                'message' => 'Deleted successfully'
+            ];
+        } else {
+            $res = [
+                'message' => 'Failed'
+            ];
+        }
+
+        return response($res, 200);
     }
 }

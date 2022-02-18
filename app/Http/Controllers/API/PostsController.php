@@ -7,6 +7,7 @@ use App\Http\Resources\PhoneItemResource;
 use App\Models\PhoneItem;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class PostsController extends Controller
@@ -18,11 +19,11 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $phoneItems = Post::all();
-        foreach ($phoneItems as $phoneItem) {
-            $phoneItem->post_comments = $phoneItem->comments;
+        $posts = Post::all();
+        foreach ($posts as $post) {
+            $post->post_comments = $post->comments;
         }
-        return response(['posts' => $phoneItems, 'message' => 'Success'], 200);
+        return response(['posts' => $posts, 'message' => 'Success'], 200);
     }
 
     /**

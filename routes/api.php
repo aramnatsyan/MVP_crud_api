@@ -24,3 +24,9 @@ Route::apiResource('posts/update', \App\Http\Controllers\API\PostsController::cl
 Route::get('posts/vote/{id}', [PostsController::class, 'vote']);
 
 Route::apiResource('comments', \App\Http\Controllers\API\PostCommentsController::class);
+
+Route::apiResource('comment/update', \App\Http\Controllers\API\PostCommentsController::class);
+
+Route::apiResource('comment/delete', \App\Http\Controllers\API\PostCommentsController::class);
+
+
