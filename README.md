@@ -32,9 +32,8 @@ PostsController
     5. for voting posts, endpoint  ( http://postcrud.loc/api/posts/vote/{id}  __ request type is GET) 
         ![image](https://user-images.githubusercontent.com/65552097/154749937-ee5c0343-1d99-42f1-b57a-7a846f2f6b82.png)
 
+
 ---------------------------------------------------------------------------------------------------------------------------------
-         
-    
 PostCommentsController
 
     1. for getting comments use index endpoint ( http://postcrud.loc/api/comments __  request type is GET )
@@ -49,8 +48,8 @@ PostCommentsController
     4.for updating use update endpoint ( http://postcrud.loc/api/comment/update/{id}  __ request type is PUT)
         ![image](https://user-images.githubusercontent.com/65552097/154755934-e1792836-c7a8-40cc-a5ad-9cd709f78e32.png)
 
----------------------------------------------------------------------------------------------------------------------------------
 
+---------------------------------------------------------------------------------------------------------------------------------
 Job 
     
     You can find jobs in "scheduled" action in Kernel class.
